@@ -1,0 +1,119 @@
+{
+  "type": "component",
+  "metadata": {},
+  "schema": {
+    "name": "jtaorgchart",
+    "friendlyName": "jtaorgchart",
+    "description": "Organizational chart for BudiBase",
+    "icon": "GraphPathing",
+    "settings": [
+      {
+        "section": true,
+        "name": "La source de l'organigramme",
+        "settings": [
+          {
+            "type": "dataProvider",
+            "label": "DataProvider",
+            "key": "dataProvider",
+            "required": true
+          },
+          {
+            "type": "field",
+            "label": "Nom",
+            "key": "chpNom",
+            "dependsOn": "dataProvider",
+            "required": true
+          },
+          {
+            "type": "field",
+            "label": "Grade",
+            "key": "chpPosition",
+            "dependsOn": "dataProvider",
+            "required": true
+          },
+          {
+            "type": "field",
+            "label": "Divers",
+            "key": "chpDivers",
+            "dependsOn": "dataProvider",
+            "required": true
+          },
+          {
+            "type": "boolean",
+            "key": "imageOk",
+            "label": "Avec image",
+            "dependsOn": "dataProvider",
+            "defaultValue": false
+          },
+          {
+            "type": "field",
+            "label": "Image",
+            "key": "chpImage",
+            "dependsOn": "imageOk",
+            "defaultValue": "",
+            "required": false
+          }
+        ]
+      },
+      {
+        "section": true,
+        "name": "Les couleurs",
+        "settings": [
+          {
+            "type": "color",
+            "label": "Du fond",
+            "key": "colorBg",
+            "defaultValue": "yellow"
+          },
+          {
+            "type": "color",
+            "label": "Du nom",
+            "key": "colorTx1",
+            "defaultValue": "black"
+          },
+          {
+            "type": "color",
+            "label": "Du grade",
+            "key": "colorTx2",
+            "defaultValue": "black"
+          },
+          {
+            "type": "color",
+            "label": "Du champ divers",
+            "key": "colorTx3",
+            "defaultValue": "black"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "key": "initialZoom",
+        "label": "Zoom initial",
+        "defaultValue": 1
+      },
+      {
+        "type": "boolean",
+        "key": "rechercheOk",
+        "label": "Avec recherche",
+        "defaultValue": false
+      },
+      {
+        "type": "boolean",
+        "key": "selectionOk",
+        "label": "Clic + sélection",
+        "defaultValue": false
+      },
+      {
+        "type": "event",
+        "label": "Click sur fiche",
+        "key": "clickfiche",
+        "context": [
+          {
+            "label": "Fiche",
+            "key": "fiche"
+          }
+        ]
+      }
+    ]
+  }
+}
