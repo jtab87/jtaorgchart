@@ -57,40 +57,26 @@
         let mTop = 5;
         let imgDiv = "";
         if (imageOk) {
-          if (d.data[chpImage][0]) {
-            imageDiffVert = 25 + 2;
-            mTop = 10;
-            imgDiv = `<div style="background-color:${colorBg};margin-top:${
-              -imageDiffVert - 20
-            }px;
-          margin-left:15px;border-radius:100px;width:50px;height:50px;" ></div>
-          <div style="margin-top:${-imageDiffVert - 20}px;">
-            <img src="${
-              d.data[chpImage][0].url
-            }" style="margin-left:20px;border-radius:100px;width:40px;height:40px;" />
-          </div>`;
-          }
+          imageDiffVert = 25 + 2;
+          mTop = 10;
+          imgDiv = `<div style="background-color:${colorBg};margin-top:${
+            -imageDiffVert - 20
+          }px;margin-left:${15}px;border-radius:100px;width:50px;height:50px;" ></div>
+          <div style="margin-top:${-imageDiffVert - 20}px;"><img src=" ${
+            d.data[chpImage][0].url
+          }" style="margin-left:${20}px;border-radius:100px;width:40px;height:40px;" /></div>`;
         }
-        return `<div style='width:${d.width}px;height:${
-          d.height
-        }px;padding-top:${
-          imageDiffVert - 2
-        }px;padding-left:1px;padding-right:1px'>
-          <div style="font-family: 'Inter', sans-serif;background-color:${colorBg}; margin-left:-1px;width:${
-            d.width - 2
-          }px;height:${
-            d.height - imageDiffVert
-          }px;border-radius:10px;border: 1px solid #E4E2E9">
-            <div style="display:flex;justify-content:flex-end;margin-top:5px;margin-right:8px;color:${colorTx3}">${
-              d.data[chpDivers]
-            }</div>
+        return `<div style='width:${
+          d.width
+        }px;height:${d.height}px;padding-top:${imageDiffVert - 2}px;padding-left:1px;padding-right:1px'>
+          <div style="font-family: 'Inter', sans-serif;background-color:${colorBg}; margin-left:-1px;width:${d.width - 2}px;
+            height:${
+              d.height - imageDiffVert
+            }px;border-radius:10px;border: 1px solid #E4E2E9">
+            <div style="display:flex;justify-content:flex-end;margin-top:5px;margin-right:8px;color:${colorTx3}">${d.data[chpDivers]}</div>
             ${imgDiv}
-            <div style="font-size:15px;color:${colorTx1};margin-left:20px;margin-top:${mTop}px">  ${
-              d.data[chpNom]
-            } </div>
-            <div style="color:${colorTx2};margin-left:20px;margin-top:3px;font-size:10px;"> ${
-              d.data[chpPosition]
-            } </div>
+            <div style="font-size:15px;color:${colorTx1};margin-left:20px;margin-top:${mTop}px">  ${d.data[chpNom]} </div>
+            <div style="color:${colorTx2};margin-left:20px;margin-top:3px;font-size:10px;"> ${d.data[chpPosition]} </div>
           </div>
         </div>`;
       })

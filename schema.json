@@ -46,7 +46,7 @@
             "defaultValue": false
           },
           {
-            "type": "field",
+            "type": "field/attachment",
             "label": "Image",
             "key": "chpImage",
             "dependsOn": "imageOk",
