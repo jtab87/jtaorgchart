@@ -19,6 +19,22 @@
           },
           {
             "type": "field",
+            "label": "id",
+            "key": "chpId",
+            "defaultValue": "id",
+            "dependsOn": "dataProvider",
+            "required": true
+          },
+          {
+            "type": "field",
+            "label": "ParentId",
+            "key": "chpParentId",
+            "defaultValue": "parentId",
+            "dependsOn": "dataProvider",
+            "required": true
+          },
+          {
+            "type": "field",
             "label": "Nom",
             "key": "chpNom",
             "dependsOn": "dataProvider",
@@ -46,7 +62,7 @@
             "defaultValue": false
           },
           {
-            "type": "field/attachment",
+            "type": "field",
             "label": "Image",
             "key": "chpImage",
             "dependsOn": "imageOk",
