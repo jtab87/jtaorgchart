@@ -7,6 +7,7 @@ This plugin allows displaying a hierarchical chart based on a data source.
 
 # Usage
 
+- **Horizontal/Compact**: change chart display
 - **Mouse wheel**: zoom in/out
 - **Click + drag**: moves the chart within the window
 - **Click on the card**: Triggers the "Click on card" onclick event
@@ -60,6 +61,7 @@ Ce plugin permet d'afficher un organigramme hiérarchique à partir d'une source
 
 # Usage
 
+- **Horizontal/Compact**: Modifie l'affichage de l'organigramme
 - **Molette souris** : zoom +/-
 - **Cliquer + tirer** : déplace l'organigramme dans la fenêtre
 - **Clic sur la fiche** : Déclenche le onclick "Click sur fiche"
