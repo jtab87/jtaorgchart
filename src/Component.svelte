@@ -36,6 +36,10 @@
     compact = !compact;
   }
 
+  function exportFull() {
+    chart.exportImg({full:true});
+  }
+
   function filterChart(e) {
     const value = e.srcElement.value;
     chart.clearHighlighting();
@@ -124,12 +128,16 @@
 <div use:styleable={$component.styles}>
   <button on:click|preventDefault={compactOuiNon}>
     {#if compact}
-      horizontal
+      Horizontal
     {:else}
-      compact
+      Compact
     {/if}
   </button>
   
+  <button on:click|preventDefault={exportFull}>
+    Export
+  </button>
+
   {#if rechercheOk}
     &nbsp;&nbsp;&nbsp;&nbsp;
     <input
