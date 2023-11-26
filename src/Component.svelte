@@ -37,7 +37,7 @@
   }
 
   function exportFull() {
-    chart.exportImg({full:true});
+    chart.exportImg({ full: true });
   }
 
   function filterChart(e) {
@@ -126,17 +126,21 @@
 </script>
 
 <div use:styleable={$component.styles}>
-  <button on:click|preventDefault={compactOuiNon}>
+  <a
+    href="view"
+    title="Compact/Horizontal"
+    on:click|preventDefault={compactOuiNon}
+  >
     {#if compact}
-      Horizontal
+      <i class="ri-arrow-up-down-fill ri-xl svelte-1ghy1wa"></i>
     {:else}
-      Compact
+      <i class="ri-arrow-left-right-fill ri-xl svelte-1ghy1wa"></i>
     {/if}
-  </button>
-  
-  <button on:click|preventDefault={exportFull}>
-    Export
-  </button>
+  </a>
+
+  <a href="save" title="Export" on:click|preventDefault={exportFull}>
+    <i class="ri-save-line ri-xl svelte-1ghy1wa"></i>
+  </a>
 
   {#if rechercheOk}
     &nbsp;&nbsp;&nbsp;&nbsp;
