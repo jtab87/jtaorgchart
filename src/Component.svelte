@@ -129,6 +129,7 @@
   <a
     href="view"
     title="Compact/Horizontal"
+    style="vertical-align:middle;"
     on:click|preventDefault={compactOuiNon}
   >
     {#if compact}
@@ -138,7 +139,12 @@
     {/if}
   </a>
 
-  <a href="save" title="Export" on:click|preventDefault={exportFull}>
+  <a
+    href="save"
+    title="Export"
+    style="vertical-align:middle;"
+    on:click|preventDefault={exportFull}
+  >
     <i class="ri-save-line ri-xl svelte-1ghy1wa"></i>
   </a>
 
@@ -146,6 +152,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;
     <input
       type="search"
+      style="vertical-align:middle;"
       placeholder="Recherche sur le nom"
       on:input={filterChart}
     />
