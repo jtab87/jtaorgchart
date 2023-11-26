@@ -6,6 +6,7 @@
   let compact = true;
   let chart = null;
   let data = [];
+  let filtre = { id: "", actif: false };
 
   export let dataProvider;
   export let rechercheOk = false;
@@ -40,7 +41,20 @@
     chart.exportImg({ full: true });
   }
 
-  function filterChart(e) {
+  function filterId() {
+    if(filtre.actif) {
+      // On supprime le filtre
+      filtre.id = "";
+      filtre.actif  =false;
+      console.log("suppression du filtre");
+    } else {
+      // On filtre
+      filtre.actif = true;
+      console.log("on filtre sur "+filtre.id);
+    }
+  }
+
+  function filterNom(e) {
     const value = e.srcElement.value;
     chart.clearHighlighting();
     const data = chart.data();
@@ -117,6 +131,8 @@
       .render()
       .onNodeClick((d) => {
         if (selectionOk) {
+          filtre.id = d.data.id;
+          filtre.actif = false;
           chart.clearHighlighting();
           chart.setHighlighted(d.data.id).render();
         }
@@ -133,9 +149,9 @@
     on:click|preventDefault={compactOuiNon}
   >
     {#if compact}
-      <i class="ri-arrow-up-down-fill ri-xl svelte-1ghy1wa"></i>
-    {:else}
       <i class="ri-arrow-left-right-fill ri-xl svelte-1ghy1wa"></i>
+    {:else}
+      <i class="ri-arrow-up-down-fill ri-xl svelte-1ghy1wa"></i>
     {/if}
   </a>
 
@@ -148,13 +164,28 @@
     <i class="ri-save-line ri-xl svelte-1ghy1wa"></i>
   </a>
 
+  {#if filtre.id !== ""}
+    <a
+      href="filtre"
+      title="Filtre"
+      style="vertical-align:middle;"
+      on:click|preventDefault={filterId}
+    >
+      {#if filtre.actif}
+        <i class="ri-filter-off-line ri-xl svelte-1ghy1wa"></i>
+      {:else}
+        <i class="ri-filter-line ri-xl svelte-1ghy1wa"></i>
+      {/if}
+    </a>
+  {/if}
+
   {#if rechercheOk}
     &nbsp;&nbsp;&nbsp;&nbsp;
     <input
       type="search"
       style="vertical-align:middle;"
       placeholder="Recherche sur le nom"
-      on:input={filterChart}
+      on:input={filterNom}
     />
   {/if}
 
