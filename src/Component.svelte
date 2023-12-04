@@ -6,10 +6,10 @@
   let compact = true;
   let chart = null;
   let data = [];
-  let filtre = { id: "", actif: false };
+  let ret = [];
+  let filtre = { noeud: false, actif: false };
 
   export let dataProvider;
-  export let rechercheOk = false;
   export let selectionOk = false;
   export let imageOk = false;
   export let colorBg = "yellow";
@@ -42,15 +42,33 @@
   }
 
   function filterId() {
-    if(filtre.actif) {
+    if (filtre.actif) {
       // On supprime le filtre
-      filtre.id = "";
-      filtre.actif  =false;
-      console.log("suppression du filtre");
+      //filtre.noeud = false;
+      filtre.actif = false;
+      filtre.noeud[chpParentId] = filtre.memoParent;
+      data = dataProvider.rows;
+      chart.data(data).render().fit();
     } else {
       // On filtre
       filtre.actif = true;
-      console.log("on filtre sur "+filtre.id);
+      ret = [];
+      filtre.memoParent = filtre.noeud[chpParentId];
+      filtre.noeud[chpParentId] = "";
+      ret.push(filtre.noeud);
+      cherchefils(filtre.noeud[chpId]);
+      chart.data(ret).render().fit();
+    }
+  }
+
+  function cherchefils(pere) {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i][chpParentId] == pere) {
+        // Je suis le fils de "pere"
+        ret.push(data[i]);
+        // je cherche mes fils
+        cherchefils(data[i][chpId]);
+      }
     }
   }
 
@@ -131,10 +149,10 @@
       .render()
       .onNodeClick((d) => {
         if (selectionOk) {
-          filtre.id = d.data.id;
+          filtre.noeud = d.data;
           filtre.actif = false;
           chart.clearHighlighting();
-          chart.setHighlighted(d.data.id).render();
+          chart.setHighlighted(d.data[chpId]).render();
         }
         clickfiche({ fiche: d.data });
       });
@@ -164,30 +182,35 @@
     <i class="ri-save-line ri-xl svelte-1ghy1wa"></i>
   </a>
 
-  {#if filtre.id !== ""}
-    <a
-      href="filtre"
-      title="Filtre"
-      style="vertical-align:middle;"
-      on:click|preventDefault={filterId}
-    >
-      {#if filtre.actif}
-        <i class="ri-filter-off-line ri-xl svelte-1ghy1wa"></i>
-      {:else}
-        <i class="ri-filter-line ri-xl svelte-1ghy1wa"></i>
-      {/if}
-    </a>
+  {#if selectionOk}
+    {#if filtre.noeud === false}
+      <i
+        class="ri-filter-line ri-xl svelte-1ghy1wa"
+        style="vertical-align:middle;color: var(--spectrum-global-color-gray-400);"
+      ></i>
+    {:else}
+      <a
+        href="filtre"
+        title="Filtre"
+        style="vertical-align:middle;"
+        on:click|preventDefault={filterId}
+      >
+        {#if filtre.actif}
+          <i class="ri-filter-off-line ri-xl svelte-1ghy1wa"></i>
+        {:else}
+          <i class="ri-filter-line ri-xl svelte-1ghy1wa"></i>
+        {/if}
+      </a>
+    {/if}
   {/if}
 
-  {#if rechercheOk}
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <input
-      type="search"
-      style="vertical-align:middle;"
-      placeholder="Recherche sur le nom"
-      on:input={filterNom}
-    />
-  {/if}
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <input
+    type="search"
+    style="vertical-align:middle;"
+    placeholder="Recherche sur le nom"
+    on:input={filterNom}
+  />
 
   <div class="chart-container" />
 </div>
