@@ -16,7 +16,7 @@ This plugin allows displaying a hierarchical chart based on a data source.
 - **Mouse wheel**: zoom in/out
 - **Click + drag**: moves the chart within the window
 - **Click on the card**: Triggers the "**Click on card**" onclick event
-- **Click on "/\\" or "\\/" button**: Shows/hides the children of the card
+- **Click on <img src="./src/images/3.png" /> button**: Shows/hides the children of the card
 
 # Configuration
 
@@ -36,6 +36,10 @@ This plugin allows displaying a hierarchical chart based on a data source.
 | **Background color, name color, grade color, miscellaneous field color** | The colors to use |
 
 <img src="./src/images/2.png" width="800px" height="400px" />
+
+## Javascript libraries
+
+Use the [d3-org-chart](https://github.com/bumbeishvili/org-chart) library
 
 ## Instructions
 
